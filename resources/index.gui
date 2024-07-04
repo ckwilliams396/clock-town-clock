@@ -1,10 +1,4 @@
-<svg class="background">
-  <circle 
-    cx="50%" 
-    cy="100%"
-    r="50%" 
-    fill="white"
-    fill-opacity=".5"/> 
+<svg class="background"> 
   <image href="hr-clock-town-clock.png"/>
   <text id="myLabel" />
 </svg>
