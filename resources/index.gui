@@ -1,4 +1,6 @@
 <svg class="background"> 
-  <image href="hr-clock-town-clock.png"/>
-  <text id="myLabel" />
+  <image href="hr-clock-town-clock.png"/> 
+  <arc x="0%" y="200" width="100%" height="350" arc-width="1%" start-angle="270" sweep-angle="180" fill="white"/>
+  <text id="time" />
+  <text id="power"/>
 </svg>

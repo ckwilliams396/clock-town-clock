@@ -1,6 +1,7 @@
 import clock from "clock";
 import * as document from "document";
 import { preferences } from "user-settings";
+import {battery, charger } from "power";
 
 function zeroPad(i) {
   if (i < 10) {
@@ -13,7 +14,7 @@ function zeroPad(i) {
 clock.granularity = "minutes";
 
 // Get a handle on the <text> element
-const myLabel = document.getElementById("myLabel");
+const time = document.getElementById("time");
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
@@ -28,5 +29,12 @@ clock.ontick = (evt) => {
   }
   let mins = zeroPad(today.getMinutes());
   let secs = zeroPad(today)
-  myLabel.text = `${hours}:${mins}`;
+  time.text = `${hours}:${mins}`;
 }
+
+const power = document.getElementById("power");
+
+battery.onchange = (evt)=> {
+  power.text = `${battery.chargeLevel}%`;
+}
+
