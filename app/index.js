@@ -1,40 +1,33 @@
 import clock from "clock";
 import * as document from "document";
-import { preferences } from "user-settings";
 import {battery, charger } from "power";
+import {updateClock, updateDate} from "../modules/dateAndTime.js";
 
-function zeroPad(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
+
+
 
 // Update the clock every minute
 clock.granularity = "minutes";
 
 // Get a handle on the <text> element
 const time = document.getElementById("time");
+const currDate = document.getElementById("date"); 
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
-  let today = evt.date;
-  let hours = today.getHours();
-  if (preferences.clockDisplay === "12h") {
-    // 12h format
-    hours = hours % 12 || 12;
-  } else {
-    // 24h format
-    hours = zeroPad(hours);
-  }
-  let mins = zeroPad(today.getMinutes());
-  let secs = zeroPad(today)
-  time.text = `${hours}:${mins}`;
+  currDate.text = updateDate(evt);
+  time.text = updateClock(evt);
 }
 
 const power = document.getElementById("power");
 
 battery.onchange = (evt)=> {
-  power.text = `${battery.chargeLevel}%`;
+  const charge = battery.chargeLevel;
+  power.text = `${charge}%`;
+  if(charge <= 50 && charge >= 25) {
+    console.log("should be yellow");
+  }else if(charge < 25) {
+    console.log("should be red"); 
+  }
 }
 
