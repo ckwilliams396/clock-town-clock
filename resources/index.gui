@@ -1,7 +1,13 @@
 <svg class="background"> 
   <image href="hr-clock-town-clock.png"/> 
-  <arc x="5%" y="50%" width="90%" height="100%" arc-width="1%" start-angle="270" sweep-angle="180" fill="white"/>
-  <rect id="rect"/>
+  <image href="heart-container.png" width="30" height="25"/>
+  <text id="hr" x="$+2" y="$-10"/>
+  <arc x="5%" y="48%" width="90%" height="95%" arc-width="1%" start-angle="270" sweep-angle="180" fill="white"/>
+  <line x1="5%+1" y1="95%" x2="95%-2" y2="95%" fill="white" stroke-width="1%-1"/>
+  <circle />
+  <!-- <g transform="translate(50%, 75%)"> -->
+    <rect id="rect"/>
+  <!-- </g> -->
   <text id="date"/>
   <text id="time" />
   <text id="power"/>

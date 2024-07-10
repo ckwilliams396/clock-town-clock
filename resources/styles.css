@@ -30,6 +30,13 @@
   y: 5%;
 }
 
+#hr {
+  text-length: 4;
+  font-size: 15;
+  fill: white;
+  text-anchor: start;
+}
+
 #rect {
   x: 30%;
   y: 60%;

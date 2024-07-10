@@ -21,7 +21,6 @@ function formatDay(day) {
   else {
     strDay = `${strDay}th`;
   }
-  console.log(strDay);
   return strDay;
 }
 
