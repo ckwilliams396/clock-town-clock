@@ -47,10 +47,16 @@ export function updateClock(tickEvent) {
     return `${hours}:${minutes}`;
 }
 
-export function updateDate(tickEvent) {
+export function updateDay(tickEvent) {
+  const today = tickEvent.date;
+  //const year = today.getFullYear();
+  const day = today.getDate();
+  return formatDay(day);
+}
+
+export function updateMonth(tickEvent) {
   const today = tickEvent.date;
   //const year = today.getFullYear();
   const month = today.getMonth();
-  const day = today.getDate();
-  return `${formatDay(day)} day of ${months[month]}`
+  return months[month];
 }

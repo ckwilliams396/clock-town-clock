@@ -1,7 +1,7 @@
 import clock from "clock";
 import * as document from "document";
 import {battery, charger } from "power";
-import {updateClock, updateDate} from "../modules/dateAndTime.js";
+import {updateClock, updateDay, updateMonth} from "../modules/dateAndTime.js";
 import { updateDate } from "../modules/dateAndTime.js";
 import { updatePowerFill } from "../modules/power.js";
 import { HeartRateSensor } from "heart-rate";
@@ -22,20 +22,22 @@ clock.granularity = "minutes";
 
 // Get a handle on the <text> element
 const time = document.getElementById("time");
-const currDate = document.getElementById("date"); 
+const day = document.getElementById("day"); 
+const month = document.getElementById("month");
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
-  currDate.text = updateDate(evt);
+  day.text = updateDay(evt);
+  month.text = updateMonth(evt);
   time.text = updateClock(evt);
 }
 
 const power = document.getElementById("power");
 console.log(battery.chargeLevel);
 battery.onchange = (evt)=> {
-  console.log(battery.chargeLevel);
   const charge = battery.chargeLevel;
   power.text = `${charge}%`;
   power.style.fill = updatePowerFill(charge);
 }
+
 
