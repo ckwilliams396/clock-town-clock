@@ -46,11 +46,3 @@
   fill: white;
   text-anchor: start;
 }
-
-#rect {
-  x: 30%;
-  y: 60%;
-  width: 30%;
-  height:30%;
-  fill: #07b63f;
-}
