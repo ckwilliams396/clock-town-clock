@@ -2,16 +2,6 @@
   viewport-fill: black;
 }
 
-#time {
-  font-size: 60;
-  font-family: System-Bold;
-  text-length: 40;
-  text-anchor: middle;
-  x: 50%;
-  y: 50%;
-  fill: white;
-}
-
 #day {
   text-anchor: middle;
   font-size: 23;

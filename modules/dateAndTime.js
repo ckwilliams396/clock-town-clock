@@ -1,6 +1,12 @@
-import { preferences } from "user-settings";
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// 180 degrees / 12 hours
+const degreesPerHour = 180/15;
+//180 degrees / 12 hours / 60 minutes
+const degreesPerMinute = degreesPerHour/60;
+const degreesPerSecond = degreesPerMinute/60;
+const startHour = 6;
+
 
 //endsWith function throws an error
 function endsWith(str, suffix) {
@@ -24,43 +30,16 @@ function formatDay(day) {
   return strDay;
 }
 
-function zeroPad(i) {
-    if (i < 10) {
-      i = "0" + i;
-    }
-    return i;
-  }
-
-
-export function updateClock(tickEvent) {
-    const today = tickEvent.date;
-    const minutes = zeroPad(today.getMinutes());
-    //const seconds = today.getSeconds();
-    const hours = today.getHours();
-    if (preferences.clockDisplay === "12h") {
-        // 12h format
-        hours = hours % 12 || 12;
-      } else {
-        // 24h format
-        hours = zeroPad(hours);
-      }
-    return `${hours}:${minutes}`;
-}
-
-export function updateDay(tickEvent) {
-  const today = tickEvent.date;
-  //const year = today.getFullYear();
+export function updateDay(today) {
   const day = today.getDate();
   return formatDay(day);
 }
 
-export function updateMonth(tickEvent) {
-  const today = tickEvent.date;
-  //const year = today.getFullYear();
+export function updateMonth(today) {
   const month = today.getMonth();
   return months[month];
 }
 
-export function calculateHoursAngle(time) {
-  //180 degrees/ 12 hours / 60 minutes 
+export function calculateHoursAngle(seconds ,minutes, hours){
+   return (seconds*degreesPerSecond) + (minutes*degreesPerMinute) + (degreesPerHour*((hours % 12 || 12)-startHour));
 }

@@ -1,11 +1,9 @@
 import clock from "clock";
 import * as document from "document";
 import {battery, charger } from "power";
-import {updateClock, updateDay, updateMonth} from "../modules/dateAndTime.js";
-import { updateDate } from "../modules/dateAndTime.js";
+import {calculateHoursAngle, updateDay, updateMonth} from "../modules/dateAndTime.js";
 import { updatePowerFill } from "../modules/power.js";
 import { HeartRateSensor } from "heart-rate";
-import { me as appbit } from "appbit";
 
 
 const hr = document.getElementById("hr");
@@ -18,22 +16,21 @@ if (HeartRateSensor) {
 }
 
 // Update the clock every minute
-clock.granularity = "minutes";
+clock.granularity = "seconds";
 
-// Get a handle on the <text> element
-const time = document.getElementById("time");
 const day = document.getElementById("day"); 
 const month = document.getElementById("month");
+const clockAnimation = document.getElementById("clockanimation");
+const clockId = clockAnimation.getElementById("hours");
 
-// Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
-  day.text = updateDay(evt);
-  month.text = updateMonth(evt);
-  time.text = updateClock(evt);
+  const today = evt.date; 
+  day.text = updateDay(today);
+  month.text = updateMonth(today);
+  clockId.groupTransform.rotate.angle = calculateHoursAngle(today.getSeconds(), today.getMinutes(), today.getHours());
 }
 
 const power = document.getElementById("power");
-console.log(battery.chargeLevel);
 battery.onchange = (evt)=> {
   const charge = battery.chargeLevel;
   power.text = `${charge}%`;
