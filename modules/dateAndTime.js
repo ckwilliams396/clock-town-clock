@@ -9,13 +9,13 @@ function endsWith(str, suffix) {
 
 function formatDay(day) {
   let strDay = day.toString();
-  if (endsWith(strDay, "1")) {
+  if (endsWith(strDay, "1") && day !== 11) {
     strDay = `${strDay}st`;
   }
   else if (endsWith(strDay, "2") && day !== 12) {
     strDay = `${strDay}nd`;
   }
-  else if (endsWith(strDay, "3")) {
+  else if (endsWith(strDay, "3") && day !== 13) {
     strDay = `${strDay}rd`;
   }
   else {
@@ -59,4 +59,8 @@ export function updateMonth(tickEvent) {
   //const year = today.getFullYear();
   const month = today.getMonth();
   return months[month];
+}
+
+export function calculateHoursAngle(time) {
+  //180 degrees/ 12 hours / 60 minutes 
 }
