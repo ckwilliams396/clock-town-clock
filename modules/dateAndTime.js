@@ -1,7 +1,7 @@
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 // 180 degrees / 12 hours
-const degreesPerHour = 180/15;
+const degreesPerHour = 180/12;
 //180 degrees / 12 hours / 60 minutes
 const degreesPerMinute = degreesPerHour/60;
 const degreesPerSecond = degreesPerMinute/60;
@@ -40,6 +40,10 @@ export function updateMonth(today) {
   return months[month];
 }
 
-export function calculateHoursAngle(seconds ,minutes, hours){
-   return (seconds*degreesPerSecond) + (minutes*degreesPerMinute) + (degreesPerHour*((hours % 12 || 12)-startHour));
+export function calculateHoursAngle(seconds ,minutes, hours){  
+  const angle = (seconds*degreesPerSecond) + (minutes*degreesPerMinute) + (degreesPerHour*((hours % 12 || 12)-startHour));
+  if(angle < 0){
+    return angle+180;
+  }
+   return angle;
 }
