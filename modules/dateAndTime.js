@@ -47,3 +47,7 @@ export function calculateHoursAngle(seconds ,minutes, hours){
   }
    return angle;
 }
+
+export function formatHours(hours) {
+  return hours % 12 || 12
+}
