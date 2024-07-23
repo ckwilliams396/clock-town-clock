@@ -28,9 +28,8 @@ clock.ontick = (evt) => {
   const today = evt.date; 
   day.text = updateDay(today);
   month.text = updateMonth(today);
-  clockId.groupTransform.rotate.angle = calculateHoursAngle(today.getSeconds(), today.getMinutes(), today.getHours());
+  clockId.groupTransform.rotate.angle = calculateHoursAngle(today.getSeconds(), today.getMinutes(), today.getHours()); 
   textHours.text = formatHours(today.getHours());
-  
 }
 
 

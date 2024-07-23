@@ -4,17 +4,12 @@
       <line x1="$-45%" y1="$" x2="$" y2="$" fill="white" stroke-width="1%-1"/>
     </symbol>
     <symbol id="clockhours">
-      <g id="hours" transform="translate(50%,95%)">
+      <g id="hours" transform="translate(50%, 95%)">
         <circle cx="$-45%" cy="$" r="15" fill="red"/>
-        <text id="texthours" x="$-15" y="$-10" fill="white" font-size="15" font-weight="bold" text-length="2" text-anchor="middle"/>
+        <g transform=" translate(-43%-1, 3%+1) rotate(-90)">
+          <text id="texthours" x="$+10" y="$" fill="white" font-size="15" font-weight="bold" text-length="2" text-anchor="middle"/>
+        </g>
         <animateTransform attributeType="rotate"/>
-      </g>
-    </symbol>
-    <symbol id="clockminutes">
-      <g id="minutes" transform="translate(50%,95%)">
-        <circle cx="$-45%" cy="$" r="15" fill="yellow"/>
-        <text x="$-45%" y="$" fill="black" font-size="15" text-length="2">8</text>
-        <animateTransform attributeType="translate"/>
       </g>
     </symbol>
   </defs>
@@ -57,9 +52,7 @@
       <use href="#line" />
     </g>
     <line x1="5%+1" y1="95%" x2="95%-2" y2="95%" fill="white" stroke-width="1%-1"/>
-
     <use id="clockanimation" href="#clockhours"/>
-
     <g transform="translate(50%,75%), rotate(45)">
       <rect x="$-10%" y="$-10%" width="25%" height="25%" fill="green"/>
     </g>
