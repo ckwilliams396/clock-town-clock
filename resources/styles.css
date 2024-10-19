@@ -20,16 +20,6 @@
   fill: white;
 }
 
-
-#power {
-  text-length: 4;
-  font-size: 15;
-  fill: green;
-  text-anchor: end;
-  x: 100%;
-  y: 5%;
-}
-
 #hr {
   text-length: 4;
   font-size: 15;

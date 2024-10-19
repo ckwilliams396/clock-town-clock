@@ -1,7 +1,7 @@
 import clock from "clock";
 import * as document from "document";
 import {battery, charger } from "power";
-import {formatHours, calculateHoursAngle, updateDay, updateMonth} from "../modules/dateAndTime.js";
+import {formatHours, calculateHoursAngle, calculateX, calculateY, updateDay, updateMonth} from "../modules/dateAndTime.js";
 import { updatePowerFill } from "../modules/power.js";
 import { HeartRateSensor } from "heart-rate";
 
@@ -21,23 +21,37 @@ clock.granularity = "seconds";
 const day = document.getElementById("day"); 
 const month = document.getElementById("month");
 const clockAnimation = document.getElementById("clockanimation");
-const clockId = clockAnimation.getElementById("hours");
+const hours = clockAnimation.getElementById("hours");
 const textHours = clockAnimation.getElementById("texthours");
+const minutesHand = document.getElementById("minuteshand");
+const textMinutes = minutesHand.getElementById("textminutes");
+const minutes = minutesHand.getElementById("minutes");
+const cb = document.getElementById("cb");
 
 clock.ontick = (evt) => {
-  const today = evt.date; 
+  const today = evt.date;
+  const minute =  today.getMinutes();
+  const hour = today.getHours();
   day.text = updateDay(today);
   month.text = updateMonth(today);
-  clockId.groupTransform.rotate.angle = calculateHoursAngle(today.getSeconds(), today.getMinutes(), today.getHours()); 
-  textHours.text = formatHours(today.getHours());
+  hours.groupTransform.rotate.angle = calculateHoursAngle(today.getSeconds(), minute, hour); 
+  textHours.text = formatHours(hour);
+  textMinutes.text = minute;
+  minutes.groupTransform.translate.x = calculateX(minute);
+  minutes.groupTransform.translate.y = calculateY(minute);
+  if(hour >= 18 || hour < 6) {
+    cb.style.fill="white";
+  }else {
+    cb.style.fill="yellow";
+  }
 }
 
 
-const power = document.getElementById("power");
+const magicBar = document.getElementById("magicbar");
+const magicLevel = magicBar.getElementById("magiclevel");
 battery.onchange = (evt)=> {
   const charge = battery.chargeLevel;
-  power.text = `${charge}%`;
-  power.style.fill = updatePowerFill(charge);
+  magicLevel.width = charge;
 }
 
 
